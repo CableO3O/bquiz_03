@@ -37,11 +37,11 @@
                         <input type="text" name="name[]" value="<?= $po['name']; ?>">
                     </div>
                     <div>
-                        <input type="hidden" name='id[]' value="<?= $po['id']; ?>">
-                        <input type="button" value="往上">
-                        <input type="button" value="往下">
+                        <input type="button" value="往上" data-id="<?=$po['id'];?>" data-sw='<?=($idx!==0)?$pos[$idx-1]['id']:$po['id'];?>'>
+                        <input type="button" value="往下" data-id="<?=$po['id'];?>" data-sw='<?=((count($pos)-1)!=$idx)?$pos[$idx+1]['id']:$po['id'];?>'>
                     </div>
-                    <div>
+                    <div style="color: black;">
+                        <input type="hidden" name='id[]' value="<?= $po['id']; ?>">
                         <input type="checkbox" name="sh[]" value="<?= $po['id']; ?>" <?= ($po['sh'] == 1) ? 'checked' : ''; ?>>顯示
                         <input type="checkbox" name="del[]" value="<?= $po['id']; ?>">刪除
                         <select name="ani[]" id="">
