@@ -149,5 +149,6 @@ function to($url){
     header("location:$url");
 }
 
+$Poster=new DB('poster');
 
 ?>
