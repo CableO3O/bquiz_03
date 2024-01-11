@@ -150,5 +150,4 @@ function to($url){
 }
 
 
-$Title=new DB('titles');
 ?>
