@@ -109,25 +109,42 @@
 
 <script>
     $(".item").eq(0).show();
+    let now = 0
+    let timer = setInterval("slide()", 3000)
+    function slide() {
+        $(".item").hide();
+        now++;
+        if (now>8) {
+            now=0;
+        }
+        
+        $(".item").eq(now).show();
+    }
+
+
+
+
     // length計算(.btn)的總數
     let total = $(".btn").length
-    let p=0;
+    let p = 0;
     $(".left,.right").on('click', function() {
         let arrow = $(this).attr('class')
         switch (arrow) {
             case "right":
-                if (p+1<=(total-4)) {
-                    p=p+1;
+                if (p + 1 <= (total - 4)) {
+                    p = p + 1;
                 }
                 break;
 
             case "left":
-                if (p-1>=0) {
-                    p=p-1;
+                if (p - 1 >= 0) {
+                    p = p - 1;
                 }
                 break;
-            } 
-            $(".btn").animate({right:90*p})
+        }
+        $(".btn").animate({
+            right: 90 * p
+        })
     })
 </script>
 
