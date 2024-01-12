@@ -14,6 +14,7 @@
             <tr>
                 <td class="ct" width="20%">片名</td>
                 <td><input type="text" name="name" value="<?=$movie['name'];?>"></td>
+                <td><input type="hidden" name="name" value="<?=$movie['id'];?>"></td>
             </tr>
             <tr>
                 <td class="ct">分級</td>
