@@ -6,7 +6,7 @@
 </style>
 <h2 class="ct">編輯院線片</h2>
 <?php $movie=$Movie->find($_GET['id']);?>
-<form action="./api/edit_movie.php" method="post" enctype="multipart/form-data">
+<form action="./api/save_movie.php" method="post" enctype="multipart/form-data">
 <div style="display: flex;align-items:start">
     <div style="width: 15%;">影片資料</div>
     <div style="width: 85%;">
@@ -14,7 +14,6 @@
             <tr>
                 <td class="ct" width="20%">片名</td>
                 <td><input type="text" name="name" value="<?=$movie['name'];?>"></td>
-                <td><input type="hidden" name="name" value="<?=$movie['id'];?>"></td>
             </tr>
             <tr>
                 <td class="ct">分級</td>
@@ -37,7 +36,7 @@
                     <?php
                         [$year,$month,$date]=explode("-",$movie['ondate']);
                         
-                    ?>
+                        ?>
                     <select name="year" id="">
                         <option value="2024" <?=($year==2024)?'selected':'';?>>2024</option>
                         <option value="2025" <?=($year==2025)?'selected':'';?>>2025</option>
@@ -48,15 +47,15 @@
                                 $selected=($month==$i)?'selected':''; 
                                 echo "<option value='$i' $selected>$i</option>";
                             }
-                        ?>
+                            ?>
                     </select>月
                     <select name="date" id="">
-                    <?php
+                        <?php
                             for ($i=1; $i<=31 ; $i++) {
                                 $selected=($date==$i)?'selected':''; 
                                 echo "<option value='$i' $selected>$i</option>";
                             }
-                        ?>
+                            ?>
                     </select>日
                 </td>
             </tr>
@@ -86,6 +85,7 @@
     </div>
 </div>
 <div class="ct">
+    <input type="hidden" name="id" value="<?=$movie['id'];?>">
     <input type="submit" value="編輯">
     <input type="reset" value="重整">
 </div>
