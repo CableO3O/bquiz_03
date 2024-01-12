@@ -70,11 +70,11 @@
             </tr>
             <tr>
                 <td class="ct">預告影片</td>
-                <td><input type="file" name="trailer" value="<?=$movie['trailer'];?>"></td>
+                <td><input type="file" name="trailer"></td>
             </tr>
             <tr>
                 <td class="ct">電影海報</td>
-                <td><input type="file" name="poster" value="<?=$movie['poster'];?>"></td>
+                <td><input type="file" name="poster"></td>
             </tr>
         </table>
     </div>
