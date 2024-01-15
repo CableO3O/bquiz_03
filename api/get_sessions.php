@@ -1,5 +1,6 @@
 <?php include_once "db.php";
-$movies=$Movie->all("where `ondate`>='$ondate' && `ondate`<='$today' && `sh`=1 order by rank");
-foreach ($movies as $movie) {
-   echo "<option value='{$movie['id']}'>{$movie['name']}</option>";
+$movie = $_GET['movie'];
+$date=$_GET['date'];
+for ($i=1; $i<=5 ; $i++) { 
+   echo "<option value='{$sess[$i]}'>{$sess[$i]} 剩餘座位 20</option>";
 }
