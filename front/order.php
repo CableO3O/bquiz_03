@@ -1,3 +1,4 @@
+<div id='select'>
 <h3>
     <div class="ct">線上訂票</div>
 </h3>
@@ -15,10 +16,32 @@
         <select name="session" id="session"></select>
     </div>
     <div>
-        <button>確定</button>
+        <button onclick="$('#select').hide();$('#booking').show()">確定</button>
         <button>重置</button>
     </div>
 </div>
+</div>
+<style>
+ #room{
+    background-image: url('./icon/03D04.png');
+    background-position: center;
+    background-repeat: none;
+    width:540px;
+    height:370px;
+    margin:auto;
+ }   
+</style>
+<div id="booking" style='display:none'>
+<div id="room"></div>
+<div id="info">
+
+<button onclick="$('#select').show();$('#booking').hide()">上一步</button>
+<button>訂購</button>
+</div>
+</div>
+
+
+
 <script>
     let url = new URL(window.location.href);
 
