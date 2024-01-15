@@ -172,6 +172,16 @@
             right: 90 * p
         })
     })
+    $(".btn").hover(
+        // 滑入時執行中斷動畫
+        function () {
+            clearInterval(timer)
+        },
+        // 滑出時重啟動畫
+        function () {
+            timer=setInterval(()=>{slide()},3000)
+          }
+    )
 </script>
 
 <style>
