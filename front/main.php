@@ -114,15 +114,21 @@
 <script>
     $(".item").eq(0).show();
     let now = 0
+    let next = 0
     let timer = setInterval(() => {
         slide()
     }, 3000)
 
-    function slide() {
+    function slide(n) {
         let ani = $(".item").eq(now).data("ani");
-        let next = now + 1;
-        if (next >= total) {
-            next = 0;
+        //  if (typeof(n) == 'undefined')如果(n)不存在
+        if (typeof(n) == 'undefined') {
+            next = now + 1;
+            if (next >= total) {
+                next = 0
+            }
+        } else {
+            next = n
         }
         console.log(next);
         switch (ani) {
@@ -144,7 +150,7 @@
                 });
                 break;
         }
-        now=next;
+        now = next;
     }
 
 
@@ -172,15 +178,22 @@
             right: 90 * p
         })
     })
+    $(".btn").on('click', function() {
+        let idx = $(this).index();
+        slide(idx);
+
+    })
     $(".btn").hover(
         // 滑入時執行中斷動畫
-        function () {
+        function() {
             clearInterval(timer)
         },
         // 滑出時重啟動畫
-        function () {
-            timer=setInterval(()=>{slide()},3000)
-          }
+        function() {
+            timer = setInterval(() => {
+                slide()
+            }, 3000)
+        }
     )
 </script>
 
