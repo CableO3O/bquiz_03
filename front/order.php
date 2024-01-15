@@ -1,4 +1,6 @@
-<h3><div class="ct">線上訂票</div></h3>
+<h3>
+    <div class="ct">線上訂票</div>
+</h3>
 <div class="order">
     <div>
         <label>電影</label>
@@ -18,33 +20,46 @@
     </div>
 </div>
 <script>
+    let url = new URL(window.location.href);
+
     getMovies();
-    $("#movie").on("change",function () { 
+    $("#movie").on("change", function() {
         getDates($("#movie").val());
 
-     })
-    $("#date").on("change",function () { 
-        getSessions($("#movie").val(),$("#date").val())
+    })
+    $("#date").on("change", function() {
+        getSessions($("#movie").val(), $("#date").val())
 
-     })
-    function getMovies() { 
-        $.get("./api/get_movies.php",(movies)=>{
+    })
+
+    function getMovies() {
+        $.get("./api/get_movies.php", (movies) => {
             $("#movie").html(movies);
+            if (url.searchParams.has('id')) {
+                $(`#movie option[value='${url.searchParams.get('id')}']`).prop('selected', true)
+            }
             getDates($("#movie").val());
-            
+
         })
     }
-    function getDates(id) { 
-        $.get("./api/get_dates.php",{id},(dates)=>{
+
+    function getDates(id) {
+        $.get("./api/get_dates.php", {
+            id
+        }, (dates) => {
             $("#date").html(dates);
-            let movie=$("#movie").val();
-            let date=$("#date").val();
-            getSessions(movie,date);
+            let movie = $("#movie").val();
+            let date = $("#date").val();
+            getSessions(movie, date);
         })
-     }
-    function getSessions(movie,date) { 
-        $.get("./api/get_sessions.php",{movie,date},(sessions)=>{
+    }
+
+    function getSessions(movie, date) {
+        $.get("./api/get_sessions.php", {
+            movie,
+            date
+        }, (sessions) => {
             $("#session").html(sessions);
         })
-     }
+    }
 </script>
