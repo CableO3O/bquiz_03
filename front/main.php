@@ -1,7 +1,10 @@
 <style>
     .lists {
-        /*  position: relative; */
+        position: relative;
         left: 114px;
+        overflow: hidden;
+        width: 200px;
+        height: 240px;
     }
 
     .item * {
@@ -14,6 +17,7 @@
         margin: auto;
         box-sizing: border-box;
         display: none;
+        position: absolute;
     }
 
     .item div img {
@@ -80,7 +84,7 @@
             $posters = $Poster->all(['sh' => 1], " order by rank");
             foreach ($posters as $idx => $poster) {
             ?>
-                <div class="item">
+                <div class="item" data-ani=<?= $poster['ani']; ?>>
                     <div><img src="./img/<?= $poster['img']; ?>" alt=""></div>
                     <div><?= $poster['name']; ?></div>
                 </div>
@@ -110,15 +114,45 @@
 <script>
     $(".item").eq(0).show();
     let now = 0
-    let timer = setInterval("slide()", 3000)
+    let timer = setInterval(()=>{slide()}, 3000)
     function slide() {
-        $(".item").hide();
-        now++;
-        if (now>8) {
-            now=0;
-        }
+        let ani = $(".item").eq(now).data("ani");
         
-        $(".item").eq(now).show();
+        switch (ani) {
+            case 1:
+                $(".item").eq(now).slideUp(1500,function () {
+                    now++;
+                    if (now >= total) {
+                        now = 0;
+                    }
+                    $(".item").eq(now).slideDown(1500);
+                    
+                });
+                break;
+
+            case 2:
+                $(".item").eq(now).fadeOut(1500,function () {
+                    now++;
+                    if (now >= total) {
+                        now = 0;
+                    }
+                    $(".item").eq(now).fadeIn(1500);
+                    
+                });
+                break;
+
+            case 3:
+                $(".item").eq(now).hide(1500,function () {
+                    now++;
+                    if (now >= total) {
+                        now = 0;
+                    }
+                    $(".item").eq(now).show(1500);
+                    
+                });
+                break;
+        }
+
     }
 
 
