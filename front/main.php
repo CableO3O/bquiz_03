@@ -114,45 +114,37 @@
 <script>
     $(".item").eq(0).show();
     let now = 0
-    let timer = setInterval(()=>{slide()}, 3000)
+    let timer = setInterval(() => {
+        slide()
+    }, 3000)
+
     function slide() {
         let ani = $(".item").eq(now).data("ani");
-        
+        let next = now + 1;
+        if (next >= total) {
+            next = 0;
+        }
+        console.log(next);
         switch (ani) {
             case 1:
-                $(".item").eq(now).slideUp(1500,function () {
-                    now++;
-                    if (now >= total) {
-                        now = 0;
-                    }
-                    $(".item").eq(now).slideDown(1500);
-                    
+                $(".item").eq(now).fadeOut(1500, function() {
+                    $(".item").eq(next).fadeIn(1500);
                 });
                 break;
 
             case 2:
-                $(".item").eq(now).fadeOut(1500,function () {
-                    now++;
-                    if (now >= total) {
-                        now = 0;
-                    }
-                    $(".item").eq(now).fadeIn(1500);
-                    
+                $(".item").eq(now).hide(1500, function() {
+                    $(".item").eq(next).show(1500);
                 });
                 break;
 
             case 3:
-                $(".item").eq(now).hide(1500,function () {
-                    now++;
-                    if (now >= total) {
-                        now = 0;
-                    }
-                    $(".item").eq(now).show(1500);
-                    
+                $(".item").eq(now).slideUp(1500, function() {
+                    $(".item").eq(next).slideDown(1500);
                 });
                 break;
         }
-
+        now=next;
     }
 
 
