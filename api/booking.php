@@ -64,6 +64,18 @@ foreach ($ords as $ord) {
                 echo "<input type='checkbox' name=chk value='$i' class='chk'>";
                 echo "</div>";
             }
+
+            // ----------------------------------------------------------
+            // if (in_array($i, $seats)) {
+            //     echo "<img src='./icon/03D03.png'>";
+            //     echo "</div>";
+            //     echo "</div>";
+            // } else {
+            //     echo "<img src='./icon/03D02.png'>";
+            //     echo "</div>";
+            //     echo "<input type='checkbox' name=chk value='$i' class='chk'>";
+            //     echo "</div>";
+            // }
         }
         ?>
     </div>
