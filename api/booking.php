@@ -62,8 +62,8 @@ foreach ($ords as $ord) {
             echo "</div>";
             if (!in_array($i, $seats)) {
                 echo "<input type='checkbox' name=chk value='$i' class='chk'>";
-                echo "</div>";
             }
+                echo "</div>";
 
             // ----------------------------------------------------------
             // if (in_array($i, $seats)) {
