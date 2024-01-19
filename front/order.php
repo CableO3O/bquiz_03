@@ -1,43 +1,29 @@
 <div id='select'>
-<h3>
-    <div class="ct">線上訂票</div>
-</h3>
-<div class="order">
-    <div>
-        <label>電影</label>
-        <select name="movie" id="movie"></select>
-    </div>
-    <div>
-        <label>日期</label>
-        <select name="date" id="date"></select>
-    </div>
-    <div>
-        <label>場次</label>
-        <select name="session" id="session"></select>
-    </div>
-    <div>
-        <button onclick="$('#select').hide();$('#booking').show()">確定</button>
-        <button>重置</button>
+    <h3>
+        <div class="ct">線上訂票</div>
+    </h3>
+    <div class="order">
+        <div>
+            <label>電影</label>
+            <select name="movie" id="movie"></select>
+        </div>
+        <div>
+            <label>日期</label>
+            <select name="date" id="date"></select>
+        </div>
+        <div>
+            <label>場次</label>
+            <select name="session" id="session"></select>
+        </div>
+        <div>
+            <button onclick="booking()">確定</button>
+            <button>重置</button>
+        </div>
     </div>
 </div>
-</div>
-<style>
- #room{
-    background-image: url('./icon/03D04.png');
-    background-position: center;
-    background-repeat: none;
-    width:540px;
-    height:370px;
-    margin:auto;
- }   
-</style>
-<div id="booking" style='display:none'>
-<div id="room"></div>
-<div id="info">
 
-<button onclick="$('#select').show();$('#booking').hide()">上一步</button>
-<button>訂購</button>
-</div>
+<div id="booking" style='display:none'>
+    
 </div>
 
 
@@ -83,6 +69,17 @@
             date
         }, (sessions) => {
             $("#session").html(sessions);
+        })
+    }
+
+    function booking() {
+        let order={movie_id:$("#movie").val(),
+                   date:$("#date").val(),
+                   session:$("#session").val()}
+        $.get("./api/booking.php",order,(booking)=>{
+            $("#booking").html(booking);
+            $('#select').hide();
+            $('#booking').show()
         })
     }
 </script>
